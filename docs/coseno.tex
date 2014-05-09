@@ -1,5 +1,4 @@
 \documentclass[a4paper,10pt]{article}
-
 \usepackage[spanish]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{latexsym,amsfonts,amssymb,amstext,amsthm,float,amsmath}
@@ -17,6 +16,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
+\tableofcontents
+\listoffigures
+\listoftables
 \title{Búsqueda de raíces de  $cos({\pi}x)$ mediante el Método de Newton}
 \author{Alba Crespo Pérez, Raquel Espino Mantas y Robbert Jozef Michiels}
 \date{12 de mayo de 2014}
@@ -65,5 +67,35 @@ Sea f : [a, b], R función derivable definida en el intervalo real [a, b]. Empez
    $$ x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}.$$
 
 Donde f ' denota la derivada de f.
+\newpage
+\section{Procedimiento experimental}
+En primer lugar se utiliza una computadora para elaborar el código python que permite realizar los experimentos. Tras los intentos que se figuran en la siguiente tabla, 
+\begin{table}[!ht]
+\begin{center}
+\begin{tabular}{|l|l|r|r|}
+Estimación & Tolerancia & Iteraciones & Raíz \\
+\hline
+0.45 & 0.01 & 10 & 0.500415333173 \\
+0.43 & 0.001 & 500 & 0.499999994981 \\
+0.41 & 0.001 & 500 & 0.499999949966 \\
+0.28 & 0.00001 & 100 & 0.500000000064\\
+0.30 & 0.0001 & 150 & 0.500000000003
+\end{tabular}
+\end{center}
+\caption{resultados del método de Newton}
+\label{history}
+\end{table}
+\newpage
+\begin{thebibliography}{2}
+\bibitem{python} Tutorial de Python. http://docs.python.org/2/tutorial/ 
+%\bibitem{UAM} Método de Newton. http://www.uam.es/personal_pdi/ciencias/barcelo/cnumerico/recursos/newton.html
+\bibitem{Book}
+     Autor =    " Alex Martelli" ,
+     Título =     "Python guía de referencia" ,
+     Editorial = " Anaya" ,
+     Año =      "2003" ,
+     Dirección =   "Juan Ignacio Luca de Tena, 15. 28027 Madrid." 
+
+\end{thebibliography}
 
 \end{document}
