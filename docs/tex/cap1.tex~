@@ -1,0 +1,30 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Capítulo 1: Motivación y Objetivos 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Los objetivos le dan al lector las razones por las que se realizó el
+proyecto o trabajo de investigación.
+
+%---------------------------------------------------------------------------------
+
+El objetivo principal del presente trabajo reside en la implementación, mediante
+el uso del lenguaje de programación Python, de un algoritmo basado en el método
+de Newton - Raphson que nos permita llevar a cabo el cálculo de las raíces de la
+función $f(x) = cos(\pi x)$.
+
+Además, se pretende lograr la consecución de los siguientes objetivos específicos:
+
+\begin{itemize}
+    \item
+      Efectuar un análisis numérico y gráfico de la evolución en el número de 
+      iteraciones requeridas por este método para la obtención de una raíz, en
+      función del error absoluto de la estimación inicial tomada como punto de 
+      partida del método respecto a la solución real determinada tras su aplicación.
+    \item
+      Analizar el costo computacional, en términos de tiempo de uso de CPU, asociado 
+      a la ejecución del algoritmo implementado, así como su variabilidad y sensibilidad
+      ante modificaciones en los parámetros iniciales.
+\end{itemize}
+
+%---------------------------------------------------------------------------------
+

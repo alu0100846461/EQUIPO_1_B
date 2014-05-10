@@ -32,7 +32,7 @@ it = 0
 sol = newton (g, tol, nmax, it)
 if (sol == 1e6):
     print "\n\tLo sentimos, no hemos localizado ninguna raíz \n\ttras alcanzar el máximo de iteraciones permitidas."
-    print " \nInténtelo de nuevo proporcionando una mejor estimación como inicio del método,\no bien incrementando la cota de iteraciones.\n"
+    print "\nInténtelo de nuevo proporcionando una mejor estimación como inicio del método,\no bien incrementando la cota de iteraciones.\n"
 elif (sol == 1e7):
     print "\n\tHemos alcanzado una anulación de la derivada durante la ejecución, \n\tpor lo que el método no es aplicable para los valores aportados.\n"
     print "Inténtelo de nuevo modificando los parámetros iniciales.\n"

@@ -1,0 +1,107 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Capítulo 2: Fundamentos Teóricos 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+\section{Breve introducción histórica}
+\label{2:sec:1}
+\setlength{\parskip}{2mm}
+
+Este método constituye una vía algorítmica de análisis numérico destinada a la 
+determinación de los ceros o raíces de una función matemática dada. Su primera 
+descripción relevante fue desarrollada por el multidisciplinar científico inglés 
+Isaac Newton en su obra \emph{De analysi per aequationes numero terminorum infinitas}, 
+escrita en 1669 y publicada en 1711 por William Jones, así como en su tratado \emph{De 
+metodis fluxionum et serierum infinitarum}, editado en 1736 por John Colson bajo el título 
+de \emph{Método de las fluxiones}.
+
+Sin embargo, si bien su reconocimiento no alcanzó en su momento la repercusión otorgada a
+los trabajos de de Newton, dicho método encuentra mención previa en el libro \emph {Aequationum 
+Universalis} (1690), cuya publicación conllevó para su autor, el matemático inglés Joseph 
+Raphson, la consecución del ingreso en la \emph{Royal Society} de Londres. 
+
+\section{Descripción teórica del método}
+\label{2:sec:2}
+
+El método de Newton-Raphson presenta un carácter abierto, lo cual implica que su
+convergencia global no se encuentra garantinzada en todos sus posibles contextos
+de aplicación. Como condición indispensable para alcanzar la convergencia, es preciso
+seleccionar a modo de parámetro de partida un valor inicial suficientemente cercano a 
+la raíz buscada, que progresará acercándose al valor real de esta raíz a medida que 
+avance la ejecución del algoritmo; de esta forma, y según comentaremos en mayor profundidad 
+más adelante, sus probabilidades de divergencia se incrementan para el caso de funciones 
+con múltiples puntos de inflexión o pendientes pronunciadas en el entorno de corte con 
+la abscisa.
+
+Una vez fijada una estimación inicial $x_{0}$ apropiada para comenzar la aplicación del 
+método, calcularemos la expresión de la recta tangente a la gráfica de la función dada 
+en el punto $x = x_{0}$. La coordenada de corte de dicha recta con el eje horizontal 
+será considerada de modo genérico como un valor más cercano a la raíz buscada que la
+hipótesis original primeramente supuesta, por lo que este paso podrá aplicarse de forma 
+recursiva tomando como suposición al nuevo valor obtenido, hasta lograr una aproximación 
+aceptable de la raíz dentro de un margen de tolerancia fijado de antemano de acuerdo con 
+la precisión exigida por el contexto.
+
+Profundizaremos ahora de forma más explícita en los cálculos matemáticos necesarios para
+la obtención de una expresión recursiva del algoritmo. Sabemos que la expresión de una
+recta de pendiente \emph{m} y que pasa por el punto $(a, b)$ viene dada de la forma:
+
+\begin{center}
+$y - b = m (x - a)$
+\end{center}
+
+En consecuencia, y considerando que la pendiente de la recta tangente a una función $f(x)$
+en un punto $x = x_{0}$ corresponde al valor en dicho punto de su primera derivada, obtenemos 
+la siguiente expresión para dicha recta en la denominada \emph{forma punto-pendiente}:
+
+\begin{center}
+$y - f(x_{0}) = f'(x_{0}) (x - x_{0})$
+\end{center} 
+
+Tomando $y = 0$, procedemos a determinar el punto de corte de la recta anterior con el eje de
+abscisas. La notación $x_{n+1}$ indica que el valor resultante de \emph{x} corresponderá a la
+estimación tomada como partida para la siguiente ejecución del algoritmo:
+
+\begin{center}
+$y = 0 \ \ \to \ \ -f(x_{0}) = f'(x_{0}) (x_{n+1} - x_{0}) \ \ \to \ \ x_{0} f'(x_{0}) - f(x_{0}) 
+= x_{n+1} f'(x_{0}) \ \ \to $
+\end{center}
+\begin{center}
+$\to \ \ x_{n+1} = x_{0} - \frac{f(x_{0})}{f'(x_{0})}$
+\end{center}
+
+De acuerdo con lo comentado al inicio de la sección, observamos que las funciones con acentuadas
+variaciones de pendiente en el entorno de la raíz buscada dificultarán la convergencia del algoritmo,
+por lo que al llevar a cabo su implementación computacional será preciso establecer una cota máxima
+de iteraciones con el fin de evitar que la ejecución recursiva permanezca atrapada en un patrón
+de divergencia.
+
+\section{Análisis de la función de estudio}
+\label{2:sec:3}
+
+Con el objetivo de lograr una mejor comprensión de los resultados obtenidos en la aproximación de
+las raíces de la función $f(x) = cos (\pi x)$ mediante el algoritmo de Newton-Raphson, procedemos 
+a calcular dichas raíces de modo teórico, mediante la resolución de una sencilla ecuación trigonométrica:
+
+\begin{center}
+$cos (\pi x) = 0 \ \ \to \ \ \pi x = \frac{\pi}{2} + k \pi, k \in \mathbb{Z} \ \ \to x = \frac{1}{2} +
+k \pi, k \in \mathbb{Z}$
+\end{center}
+
+Vemos así que se verifica lo siguiente:
+
+\begin{center}
+$cos (\pi x) = 0 \iff x = ..., -2.5, -1,5, -0.5, 0.5, 1.5, 2.5, ...$
+\end{center}
+
+Concluimos con ello que se trata de una función periódica con periodo P = 2. Este hecho, así como
+los puntos de corte con el eje de abscisas, quedan reflejados de modo ilustrativo a través de la 
+siguiente gráfica:
+
+\begin{figure}[!th]
+\begin{center}\includegraphics[height=11cm, width=14cm]{images/cos.eps}
+\label{cos}
+\end{center}
+\end{figure}
+

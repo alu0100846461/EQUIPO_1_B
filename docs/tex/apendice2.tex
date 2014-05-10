@@ -1,0 +1,139 @@
+\section{Recuento de iteraciones}
+\label{Apendice2:label}
+
+\begin{center}
+\begin{footnotesize}
+
+\begin{verbatim}
+#######################################################################################
+# Fichero countiter.py
+#######################################################################################
+#
+#  AUTORES: Alba Crespo Perez, Raquel Espino Mantas y Robbert Jozef Michiels
+#   
+#  FECHA: 5 de mayo de 2014
+#
+#  DESCRIPCION: El codigo Python que a continuacion se presenta cumple la funcion
+#  de determinar la cantidad de iteraciones requeridas para la deteccion de la raiz
+#  x = 0.5, tomando como estimacion inicial a los distintos valores comprendidos en
+#  el intervalo [0.2, 0.5), con una diferencia de una centesima entre dos valores 
+#  consecutivos. Los resultados finales seran almacenados en un fichero.
+#
+#######################################################################################
+
+#!encoding: UTF-8
+
+from math import cos
+from math import sin
+PI = 3.141592653589793116
+
+def f(x):
+    return cos (PI * x)
+
+def df(x):
+    return - PI * sin (PI * x)
+
+def newton (g, tol, nmax, it, name):
+    if (it < nmax):
+        if (df(g) != 0):
+            g = g - (f(g)/df(g))
+        else:
+            return 1e7
+        if (abs(f(g)) > tol):
+            g = newton (g, tol, nmax, it, name)
+            it = it + 1
+        if (abs(f(g)) < tol):
+            fich = open(name, "a")
+            fich.write(str(it) + "\n")
+            fich.close()
+            return g
+    else:
+        return 1e6
+
+tol = float(raw_input("\nIntroduzca el margen de tolerancia: "))
+nmax = int(raw_input("Indique la cantidad maxima de iteraciones: "))
+name = raw_input("Especifique un nombre para el fichero de salida: ")
+
+for i in range (20, 50):
+    x = i/100.0
+    sol = newton (x, tol, nmax, 0, name)
+    if (sol != 1e6) and (sol != 1e7):
+        fich = open(name, "a")
+        fich.write (str(x) + "\n")
+        fich.close()
+
+print "\nOperacion realizada con exito.\n"
+
+\end{verbatim}
+
+\end{footnotesize}
+\end{center}
+
+\section{Representacion grafica de la evolucion de las iteraciones}
+\label{Apendice2:label2}
+
+\begin{center}
+\begin{footnotesize}
+
+\begin{verbatim}
+#######################################################################################
+# Fichero graphiter.py
+#######################################################################################
+#
+#  AUTORES: Alba Crespo Perez, Raquel Espino Mantas y Robbert Jozef Michiels
+#   
+#  FECHA: 5 de mayo de 2014
+#
+#  DESCRIPCION: A partir de la lectura e interpretacion de la informacion contenida
+#  en el fichero generado por el programa anterior, este codigo nos permite elaborar
+#  una representacion grafica de los datos experimentales obtenidos para asi facilitar 
+#  su comprension y visualizacion. 
+#
+#######################################################################################
+
+#!encoding: UTF-8
+
+import matplotlib.pyplot as pl
+pl.rc('text', usetex=True)
+pl.rc('font', family='Bookman')
+
+name = raw_input("Introduzca el nombre del fichero para lectura: ")
+f = open(name, "r")
+
+flag = 0
+X = []
+Y = []
+
+while (True):
+    l = f.readline().rstrip()
+    if (l == ""):
+        break
+    elif (l != "0") and (l != "1"):
+        Y = Y + [flag-1]
+        flag = 0
+    else:
+        flag += 1
+
+f.close()
+
+for i in range (20, 50):
+    x0 = i/100.0
+    dif = 0.5 - x0
+    X = X + [dif]
+
+pl.plot(X,Y,"b")
+pl.title(r'Evolucion en el numero de iteraciones del metodo de Newton') 
+pl.xlabel(r'Error absoluto de la estimacion inicial')
+pl.ylabel('Cantidad de iteraciones')
+
+pl.xlim(-0.05, 0.35)
+pl.ylim(0.8, 3.2)
+
+pl.savefig("iterevol.eps", dpi=72)
+pl.show()
+
+\end{verbatim}
+
+
+\end{footnotesize}
+\end{center}

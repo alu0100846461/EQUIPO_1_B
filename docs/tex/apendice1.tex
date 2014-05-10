@@ -1,0 +1,71 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           APÉNDICE 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\begin{footnotesize}
+
+\begin{verbatim}
+#######################################################################################
+# Fichero newton.py
+#######################################################################################
+#
+#  AUTORES: Alba Crespo Perez, Raquel Espino Mantas y Robbert Jozef Michiels
+#   
+#  FECHA: 5 de mayo de 2014
+#
+#  DESCRIPCION: Este codigo Python nos permite calcular las raices de la funcion
+#  f(x) = cos (pi * x), mediante la aplicacion del metodo de Newton-Raphson. Como
+#  parametros de inicio se solicita al usuario una estimacion de la raiz, el margen
+#  de tolerancia permitido y una cota maxima de iteraciones.
+#
+#######################################################################################
+
+#!encoding: UTF-8
+
+from math import cos
+from math import sin
+PI = 3.141592653589793116
+
+def f(x):
+    return cos (PI * x)
+
+def df(x):
+    return - PI * sin (PI * x)
+
+def newton (g, tol, nmax, it):
+    if (it < nmax):
+        if (df(g) != 0):
+            g = g - (f(g)/df(g))
+        else:
+            return 1e7
+        if (abs(f(g)) > tol):
+            g = newton (g, tol, nmax, it)
+            it = it + 1
+        if (abs(f(g)) < tol):
+            return g
+    else:
+        return 1e6
+
+g = float(raw_input("\nProporcione una estimacion para iniciar el calculo: "))
+tol = float(raw_input("Introduzca el margen de tolerancia: "))
+nmax = int(raw_input("Indique la cantidad maxima de iteraciones: "))
+it = 0
+sol = newton (g, tol, nmax, it)
+if (sol == 1e6):
+    print "\n\tLo sentimos, no hemos localizado ninguna raiz \n\ttras alcanzar el maximo
+            de iteraciones permitidas."
+    print "\nIntentelo de nuevo proporcionando una mejor estimacion como inicio del método,\n
+            o bien incrementando la cota de iteraciones.\n"
+elif (sol == 1e7):
+    print "\n\tHemos alcanzado una anulacion de la derivada durante la ejecucion, \n\tpor lo 
+           que el metodo no es aplicable para los valores aportados.\n"
+    print "Intentelo de nuevo modificando los parametros iniciales.\n"
+else:
+    print "\nRaiz encontrada para la funcion:", sol, "\n"
+
+\end{verbatim}
+
+\end{footnotesize}
+\end{center}
+
