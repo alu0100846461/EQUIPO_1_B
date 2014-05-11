@@ -5,6 +5,7 @@
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 \section{Descripción de los experimentos}
 \label{3:sec:1}
+\setlength{\parskip}{2mm}
 
 Para llevar a cabo el cálculo de las raíces de la función objeto de estudio,
 se ha realizado la implementación de un algoritmo recursivo basado en el método
@@ -14,17 +15,20 @@ ha sido posible observar los efectos producidos por la variabilidad de éstos
 sobre la solución final generada por el algoritmo.
 
 Por otra parte, con el fin de cumplir los objetivos específicos de esta investigación
-(ver capítulo 1), hemos recurrido a la elaboración de dos programas Python: el primero 
-de ellos (apéndice 2A) está destinado a efectuar un recuento de las iteraciones
+(ver capítulo 1), hemos recurrido a la elaboración de tres programas Python: el primero 
+de ellos (apéndice B1) está destinado a efectuar un recuento de las iteraciones
 requeridas para el cálculo de una raíz en función del error absoluto del valor
 proporcionado al método como estimación inicial, almacenando las cantidades obtenidas
-en un fichero para su posterior lectura, mientras que el segundo (apéndice 2B)
-posibilita la elaboración de una gráfica ilustrativa tomando como base la información
-contenida en el fichero generado con anterioridad.
+en un fichero para su posterior lectura; el segundo (apéndice B2) posibilita la elaboración 
+de una gráfica ilustrativa tomando como base la información contenida en el fichero generado 
+con anterioridad, y el tercero (apéndice B3) cumple la función de generar una representación 
+gráfica del tiempo total de CPU empleado en la ejecución del algoritmo, frente a la cantidad 
+de iteraciones recursivas efectuadas por el mismo.
 
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 \section{Descripción del material}
 \label{3:sec:2}
+\setlength{\parskip}{2mm}
 
 Como soporte físico requerido para la puesta en práctica de los experimentos,
 ha sido utilizada una computadora con las especificaciones de hardware que se 
@@ -58,16 +62,88 @@ señalar la siguente información:
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 \section{Resultados obtenidos}
 \label{3:sec:3}
+\setlength{\parskip}{2mm}
 
-Subsección 3
+La ejecución del algoritmo implementado (ver apéndice A), basado en el método de 
+Newton-Raphson, para el cálculo de las raíces de la función $f(x) = cos (\pi x)$
+ha proporcionado como resultado la siguiente tabla ejemplificativa de raíces, 
+tomando como punto de partida los valores supuestos que en ella se especifican:
 
-%------------------------------------------------------------------------------
-%\input{tables/table.tex}
-%------------------------------------------------------------------------------
+\input{./tables/nwtable.tex}
+
+En lo referente al análisis de la evolución en la cantidad de iteraciones para
+distintos errores absolutos o márgenes de desviación en la estimación inicial
+respecto a la raíz buscada, los resultados obtenidos quedan reflejados a través
+del siguiente gráfico, basado en la tabla que a seguidamente se presenta y 
+correspondientes a un margen de tolerancia de $10^{-9}$:
+
+\begin{figure}[!th]
+\begin{center}\includegraphics[height=11cm, width=14cm]{images/iterevol.eps}
+\caption{Análisis de la tendencia al incremento en las iteraciones.}
+\label{iter}
+\end{center}
+\end{figure}
+
+\input{./tables/itertable.tex}
+
+Por último, y siguiendo el esquema anterior, la información relativa al tiempo 
+de CPU empleado para distintas cantidades de iteraciones puede consultarse a 
+través del gráfico que a continuación se muestra, así como a partir de su tabla 
+correspondiente:
+
+\begin{figure}[!th]
+\begin{center}\includegraphics[height=11cm, width=14cm]{images/CPUtime.eps}
+\caption{Avance del tiempo de CPU por cantidad de iteraciones.}
+\label{cpu}
+\end{center}
+\end{figure}
+
+\input{./tables/cputable.tex}
 
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 \section{Análisis de los resultados}
 \label{3:sec:4}
+\setlength{\parskip}{2mm}
 
-Subsección 4
+De acuerdo con información recogida en la tabla 3.1, es posible comentar diversos
+aspectos relevantes. Por una parte, sus dos primeras filas reflejan un proceso de
+ejecución cuya iteración inicial diverge respecto a la raíz más cercana al valor
+supuesto, debido a la proximidad del mismo a un extremo relativo de la función, lo cual
+origina una recta tangente de pendiente reducida cuyo punto de corte con los ejes se
+encuentra notablemente alejado del valor de partida. Sin embargo, observamos que a 
+partir de este momento la ejecución recursiva se torna convergente, debido a que dicho
+punto de corte constituye un valor supuesto próximo a otra de las raíces de la función
+estudiada; en este sentido, podemos concluir que el método de Newton-Raphson logrará
+la convergencia para la práctica totalidad de los posibles valores iniciales, debido a
+las infinitas raíces que la función presenta y a su característica de periodicidad, si
+bien la solución devuelta por el método podría no resultar la más próxima a la 
+suposición inicial en caso de encontrarse ésta cercana a un extremo relativo de la
+función.
+
+Por otra parte cabe destacar que, de modo general, la cantidad de iteraciones requerida
+por este método para la obtención de una solución válida resulta considerablemente reducida,
+no superando las cuatro iteraciones aún en el caso de seleccionar estrechos márgenes de 
+tolerancia, del orden de $10^{-9}$; de acuerdo con ello, podemos afirmar que el método
+de Newton-Raphson presenta en este caso una elevada velocidad de convergencia. Debido a este
+hecho, el valor fijado para la cota máxima de iteraciones reviste escasa importancia, siendo
+factible reducirlo hasta cantidades incluso inferiores a las diez iteraciones.
+
+En lo referente al incremento en la cantidad de iteraciones en función del aumento en el error
+absoluto de la estimación inicial respecto a la raíz buscada, los datos recogidos en el gráfico
+3.1 y la tabla 3.2 corroboran lo ya observado con anterioridad: la rápida convergencia del
+algoritmo permite obtener un suave ascenso en el número de ejecuciones recursivas, que tal y 
+como ha sido expuesto, no llegan en ningún caso a sobrepasar el margen de cuatro iteraciones.
+De cualquier modo, la separación constante de una unidad existente entre raíces imposibilita
+el análisis del comportamiento del algoritmo para errores absolutos superiores a 0.3 en la 
+estimación inicial, a riesgo de comprometer la convergencia, producir una anulación de la 
+derivada u obtener raíces alejadas del entorno de partida.
+
+Por último, la información relativa al costo computacional del algoritmo en términos de tiempo
+de CPU requerido para efectuar su ejecución (véase figura 3.2 y tabla 3.3) nos permite corroborar
+la elevada eficiencia de la implementación recursiva del método de Newton-Raphson, puesto que 
+la reducida cantidad de iteraciones que requiere hace preciso reiterar decenas de miles de 
+veces la invocación al algoritmo hasta obtener valores significativos para los tiempos de uso de CPU.
+Además, observamos que la variabilidad en los parámetros iniciales tan sólo afecta a la utilización
+de recursos computacionales cuando su modificación altera el volumen total de iteraciones requerido 
+para la ejecución del algoritmo. 
 

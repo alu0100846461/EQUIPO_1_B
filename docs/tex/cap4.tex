@@ -1,5 +1,37 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Capítulo 4: Conclusiones y Trabajos Futuros 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Contenido del capítulo 4
+\setlength{\parskip}{2mm}
+
+En esta secci\'on se facilita un resumen de las principales conclusiones alcanzadas
+tras la finalizaci\'on y an\'alisis de los experimentos llevados a cabo durante la
+realizaci\'on del presente trabajo:
+
+\begin{enumerate}
+    \item
+      Las ra\'ices de la funci\'on $f(x) = cos (\pi x)$ vienen dadas de la siguiente forma:
+      \begin{center}
+      $x = \frac{1}{2} + k, \ k \in \mathbb{Z} \iff x = ..., -2.5, -1,5, -0.5, 0.5, 1.5, 2.5, ...$
+      \end{center}
+    \item
+      Para el caso de la funci\'on de estudio, la convergencia del algoritmo de Newton-Raphson
+      se encuentra pr\'acticamente garantizada debido a la reducida separaci\'on entre raíces y a su
+      carácter de periodicidad, salvo en el caso de seleccionar un valor inicial coincidente
+      con un extremo relativo de la funci\'on.
+    \item
+      La eficiencia del algoritmo implementado resulta ser considerablemente elevada, al requerir
+      \'infimos tiempos de CPU para la determinaci\'on de una ra\'iz y no superar en ning\'un caso el 
+      margen de cuatro iteraciones hasta obtener la soluci\'on exacta.
+    \item
+      El m\'etodo de Newton-Raphson demuestra caracterizarse por una notable velocidad de convergencia
+      para la funci\'on considerada, llegando a proporcionar hasta cinco cifras decimales correctas a 
+      lo largo de de una \'unica iteraci\'on.
+    \item
+      Las alteraciones en los par\'ametros iniciales tan s\'olo afectan al tiempo de uso de CPU a trav\'es
+      de la modificaci\'on de la cantidad total de invocaciones recursivas requeridas para alcanzar
+      una ra\'iz v\'alida, si bien el reducido valor de dicho tiempo origina que las diferencias globales
+      resulten despreciables tanto desde el punto de vista del usuario como en un sentido computacional.
+\end{enumerate}
+
+

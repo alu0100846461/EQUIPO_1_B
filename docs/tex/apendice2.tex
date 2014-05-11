@@ -2,6 +2,10 @@
 \label{Apendice2:label}
 
 \begin{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           APÉNDICE 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{footnotesize}
 
 \begin{verbatim}
@@ -69,7 +73,7 @@ print "\nOperacion realizada con exito.\n"
 \end{footnotesize}
 \end{center}
 
-\section{Representacion grafica de la evolucion de las iteraciones}
+\section{Creando figura con evoluci\'on de las iteraciones}
 \label{Apendice2:label2}
 
 \begin{center}
@@ -137,3 +141,69 @@ pl.show()
 
 \end{footnotesize}
 \end{center}
+
+\section{Estudio del tiempo de CPU}
+\label{Apendice2:label3}
+
+\begin{center}
+\begin{footnotesize}
+
+\begin{verbatim}
+#######################################################################################
+# Fichero CPUtime.py
+#######################################################################################
+#
+#  AUTORES: Alba Crespo Perez, Raquel Espino Mantas y Robbert Jozef Michiels
+#   
+#  FECHA: 5 de mayo de 2014
+#
+#  DESCRIPCION: Este programa cumple la funcion de representar graficamente el tiempo
+#  de CPU requerido en la ejecucion de 10^4 invocaciones al metodo de Newton-Raphson
+#  tomando para ello cuatro posibles combinaciones de parametros iniciales que 
+#  precisan, respectivamente, de 1, 2, 3 y 4 llamadas recursivas al algoritmo.
+#
+#######################################################################################
+
+#!encoding: UTF-8
+
+import matplotlib.pylab as pl
+import numpy as np
+import newton
+import time
+
+pl.rc('text', usetex=True)
+pl.rc('font', family='Bookman')
+
+g = (3.45,-5.8,-7.2,2.17)
+tol = (10e-4,10e-5, 10e-7,10e-12)
+nmax = (10,50,100,10)
+
+X = []
+Y = []
+
+for i in range (0, 4):
+    t0 = time.clock()
+    for j in range (0, 10000):
+        sol = newton.newton (g[i], tol[i], nmax[i], 0)
+    tf = time.clock() - t0
+    X = X + [i+1]
+    Y = Y + [tf]
+
+print Y
+
+pl.plot(X,Y,'mp--')
+pl.title(r'Costo computacional del m\'etodo de Newton') 
+pl.xlabel(r'Cantidad de iteraciones (en decenas de miles)')
+pl.ylabel(r'Tiempo de CPU (segundos)')
+
+pl.xlim(0.5, 4.5)
+pl.ylim(0, 0.2)
+
+pl.savefig("CPUtime.eps", dpi=72)
+pl.show()
+
+\end{verbatim}
+
+\end{footnotesize}
+\end{center}
+

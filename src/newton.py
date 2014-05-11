@@ -25,17 +25,18 @@ def newton (g, tol, nmax, it):
     else:
         return 1e6
 
-g = float(raw_input("\nProporcione una estimación para iniciar el cálculo: "))
-tol = float(raw_input("Introduzca el margen de tolerancia: "))
-nmax = int(raw_input("Indique la cantidad máxima de iteraciones: "))
-it = 0
-sol = newton (g, tol, nmax, it)
-if (sol == 1e6):
-    print "\n\tLo sentimos, no hemos localizado ninguna raíz \n\ttras alcanzar el máximo de iteraciones permitidas."
-    print "\nInténtelo de nuevo proporcionando una mejor estimación como inicio del método,\no bien incrementando la cota de iteraciones.\n"
-elif (sol == 1e7):
-    print "\n\tHemos alcanzado una anulación de la derivada durante la ejecución, \n\tpor lo que el método no es aplicable para los valores aportados.\n"
-    print "Inténtelo de nuevo modificando los parámetros iniciales.\n"
-else:
-    print "\nRaíz encontrada para la función:", sol, "\n"
+if (__name__ == "__main__"):
+    g = float(raw_input("\nProporcione una estimación para iniciar el cálculo: "))
+    tol = float(raw_input("Introduzca el margen de tolerancia: "))
+    nmax = int(raw_input("Indique la cantidad máxima de iteraciones: "))
+    it = 0
+    sol = newton (g, tol, nmax, it)
+    if (sol == 1e6):
+        print "\n\tLo sentimos, no hemos localizado ninguna raíz \n\ttras alcanzar el máximo de iteraciones permitidas."
+        print "\nInténtelo de nuevo proporcionando una mejor estimación como inicio del método,\no bien incrementando la cota de iteraciones.\n"
+    elif (sol == 1e7):
+        print "\n\tHemos alcanzado una anulación de la derivada durante la ejecución, \n\tpor lo que el método no es aplicable para los valores aportados.\n"
+        print "Inténtelo de nuevo modificando los parámetros iniciales.\n"
+    else:
+        print "\nRaíz encontrada para la función:", sol, "\n"
 

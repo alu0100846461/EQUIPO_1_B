@@ -23,6 +23,7 @@ Raphson, la consecución del ingreso en la \emph{Royal Society} de Londres.
 
 \section{Descripción teórica del método}
 \label{2:sec:2}
+\setlength{\parskip}{2mm}
 
 El método de Newton-Raphson presenta un carácter abierto, lo cual implica que su
 convergencia global no se encuentra garantinzada en todos sus posibles contextos
@@ -79,6 +80,7 @@ de divergencia.
 
 \section{Análisis de la función de estudio}
 \label{2:sec:3}
+\setlength{\parskip}{2mm}
 
 Con el objetivo de lograr una mejor comprensión de los resultados obtenidos en la aproximación de
 las raíces de la función $f(x) = cos (\pi x)$ mediante el algoritmo de Newton-Raphson, procedemos 
@@ -86,7 +88,7 @@ a calcular dichas raíces de modo teórico, mediante la resolución de una sencilla
 
 \begin{center}
 $cos (\pi x) = 0 \ \ \to \ \ \pi x = \frac{\pi}{2} + k \pi, k \in \mathbb{Z} \ \ \to x = \frac{1}{2} +
-k \pi, k \in \mathbb{Z}$
+k, \ k \in \mathbb{Z}$
 \end{center}
 
 Vemos así que se verifica lo siguiente:
@@ -101,7 +103,19 @@ siguiente gráfica:
 
 \begin{figure}[!th]
 \begin{center}\includegraphics[height=11cm, width=14cm]{images/cos.eps}
+\caption{$f(x) = cos (\pi x)$}
 \label{cos}
 \end{center}
 \end{figure}
+
+Debido a la naturaleza del método de Newton-Raphson, es preciso señalar que su aplicación no podrá
+llevarse a cabo en caso de alcanzarse una anulación de la derivada para el punto de partida del
+algoritmo. Analizaremos por tanto los puntos críticos de la función de estudio, para así conocer 
+qué valores deben ser evitados como suposiciones iniciales en la invocación del método:
+
+\begin{center}
+$(cos (\pi x))' = 0 \ \ \to \ \ -\pi sen (\pi x) = 0 \ \ \to \ \ sen (\pi x) = 0 \ \ \to \ \ 
+\pi x = k \pi, \ k \in \mathbb{Z} \ \ \to $
+$\to \ \ x = k, \ k \in \mathbb{Z} \ \ \to x = ..., -2, -1, 1, 2, ...$
+\end{center}
 
